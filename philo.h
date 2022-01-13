@@ -6,7 +6,7 @@
 /*   By: cbignon <cbignon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 15:27:03 by cbignon           #+#    #+#             */
-/*   Updated: 2022/01/13 14:12:45 by cbignon          ###   ########.fr       */
+/*   Updated: 2022/01/13 15:57:24 by cbignon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,6 @@ int		philo_eat(t_philo *philo);
 int		philo_sleep(t_philo *philo);
 int		philo_think(t_philo *philo);
 int		count_meal(t_philo *philo);
-int		sleep_or_die(t_philo *philo);
 
 int		check_philosophers(t_data *data);
 int		check_death(t_philo *philo, t_data *data, int n);

@@ -6,7 +6,7 @@
 /*   By: cbignon <cbignon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/22 12:20:02 by cbignon           #+#    #+#             */
-/*   Updated: 2022/01/13 15:26:35 by cbignon          ###   ########.fr       */
+/*   Updated: 2022/01/13 16:08:13 by cbignon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,8 @@ int	philo_eat(t_philo *philo)
 	ft_usleep(philo->args->t_to_eat);
 	change_fork_state(philo->friends_fork, LOCK, FREE);
 	change_fork_state(philo->fork, LOCK, FREE);
-	pthread_mutex_lock(&philo->args->arg_mutex);
-	if (philo->args->nb_meals)
-		count_meal(philo);
-	pthread_mutex_unlock((&philo->args->arg_mutex));
-	return (sleep_or_die(philo));
+	count_meal(philo);
+	return (philo_sleep(philo));
 }
 
 int	philo_sleep(t_philo *philo)
@@ -58,43 +55,23 @@ int	philo_sleep(t_philo *philo)
 	print_status(philo, "is sleeping");
 	pthread_mutex_unlock(&philo->args->print_mutex);
 	ft_usleep(philo->args->t_to_sleep);
-	pthread_mutex_lock(&philo->args->arg_mutex);
-	if (philo->args->on)
-	{
-		pthread_mutex_unlock(&philo->args->arg_mutex);
-		return (philo_think(philo));
-	}
-	else
-	{
-		pthread_mutex_unlock(&philo->args->arg_mutex);
-		return (1);
-	}
+	return (philo_think(philo));
 }
 
 int	philo_think(t_philo *philo)
 {
 	pthread_mutex_lock(&philo->args->print_mutex);
-	if (print_status(philo, "is thinking"))
-	{
-		pthread_mutex_unlock(&philo->args->print_mutex);
-		return (1);
-	}
+	print_status(philo, "is thinking");
 	pthread_mutex_unlock(&philo->args->print_mutex);
 	return (0);
 }
 
-int	sleep_or_die(t_philo *philo)
+int	count_meal(t_philo *philo)
 {
-	pthread_mutex_lock(&philo->args->arg_mutex);
-	if (philo->args->on)
-	{
-		pthread_mutex_unlock(&philo->args->arg_mutex);
-		philo_sleep(philo);
-	}
-	else
-	{
-		pthread_mutex_unlock(&philo->args->arg_mutex);
-		return (1);
-	}
+	pthread_mutex_lock(&philo->count_mut);
+	philo->meals_count++;
+	if (philo->meals_count == philo->args->nb_meals)
+		philo->hungry = 0;
+	pthread_mutex_unlock(&philo->count_mut);
 	return (0);
 }
