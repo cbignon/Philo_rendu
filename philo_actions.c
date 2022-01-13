@@ -6,7 +6,7 @@
 /*   By: cbignon <cbignon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/22 12:20:02 by cbignon           #+#    #+#             */
-/*   Updated: 2022/01/13 14:47:03 by cbignon          ###   ########.fr       */
+/*   Updated: 2022/01/13 15:26:35 by cbignon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,10 @@ int	philo_eat(t_philo *philo)
 	print_status(philo, "has taken a fork");
 	print_status(philo, "has taken a fork");
 	print_status(philo, "is eating");
+	pthread_mutex_unlock(&philo->args->print_mutex);
 	pthread_mutex_lock(&philo->count_mut);
 	philo->last_meal = get_moment(philo->start);
 	pthread_mutex_unlock(&philo->count_mut);
-	pthread_mutex_unlock(&philo->args->print_mutex);
 	ft_usleep(philo->args->t_to_eat);
 	change_fork_state(philo->friends_fork, LOCK, FREE);
 	change_fork_state(philo->fork, LOCK, FREE);
