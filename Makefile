@@ -6,7 +6,7 @@
 #    By: cbignon <cbignon@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/01 11:19:39 by cbignon           #+#    #+#              #
-#    Updated: 2022/01/13 14:43:37 by cbignon          ###   ########.fr        #
+#    Updated: 2022/01/13 14:58:18 by cbignon          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ SRC =	clean.c \
 OBJ = $(SRC:.c=.o)
 
 CC = clang
-FLAGS = -Wall -Werror -Wextra -g3 -fsanitize=thread
+FLAGS = -Wall -Werror -Wextra -g3
 
 LIB = -lpthread
 
