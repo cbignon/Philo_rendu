@@ -6,7 +6,7 @@
 /*   By: cbignon <cbignon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 13:40:34 by cbignon           #+#    #+#             */
-/*   Updated: 2022/01/18 12:07:42 by cbignon          ###   ########.fr       */
+/*   Updated: 2022/01/18 14:40:55 by cbignon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,6 @@ void	ft_usleep(long usec)
 	long	start;
 
 	start = get_time();
-	while (get_time() - start < usec )
+	while (get_time() - start < usec)
 		usleep(usec / 10);
 }

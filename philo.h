@@ -6,7 +6,7 @@
 /*   By: cbignon <cbignon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 15:27:03 by cbignon           #+#    #+#             */
-/*   Updated: 2022/01/18 12:07:54 by cbignon          ###   ########.fr       */
+/*   Updated: 2022/01/18 14:39:28 by cbignon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ typedef struct s_arg
 	int		t_to_eat;
 	int		t_to_sleep;
 	int		nb_meals;
-	long	start;
 	int		on;
 	t_mutex	arg_mutex;
 	t_mutex	print_mutex;
@@ -86,7 +85,7 @@ int		init_struc(t_data *data, int argc, char **argv);
 int		init_arg(t_data *data, int argc, char **argv);
 int		init_philo(t_data *data);
 int		init_forks(t_data *data);
-int		attribute_forks(t_data *data);
+int		attribute_friends_forks(t_data *data);
 
 int		print_status(t_philo *philo, char *status);
 void	print_death(t_philo *philo);

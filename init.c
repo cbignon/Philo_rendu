@@ -6,7 +6,7 @@
 /*   By: cbignon <cbignon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 15:52:48 by cbignon           #+#    #+#             */
-/*   Updated: 2022/01/13 14:04:05 by cbignon          ###   ########.fr       */
+/*   Updated: 2022/01/18 14:39:34 by cbignon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ int	init_arg(t_data *data, int argc, char **argv)
 	data->args->t_to_eat = ft_atoui(argv[3]);
 	data->args->t_to_sleep = ft_atoui(argv[4]);
 	data->args->nb_meals = -1;
-	data->args->start = data->start;
 	data->args->on = 1;
 	if (argc == 6)
 		data->args->nb_meals = ft_atoui(argv[5]);
@@ -76,24 +75,8 @@ int	init_philo(t_data *data)
 		if (pthread_mutex_init(&data->philo[i].count_mut, NULL))
 			return (print_error("An error occured"));
 	}
-	if (attribute_forks(data))
+	if (attribute_friends_forks(data))
 		return (1);
-	return (0);
-}
-
-int	attribute_forks(t_data *data)
-{
-	int	i;
-
-	i = 0;
-	while (i < data->args->nb_philo)
-	{
-		if (i < data->args->nb_philo - 1)
-			data->philo[i].friends_fork = &data->forks[i + 1];
-		else
-			data->philo[i].friends_fork = &data->forks[0];
-		i++;
-	}
 	return (0);
 }
 
@@ -108,6 +91,22 @@ int	init_forks(t_data *data)
 			return (print_error("An error occured"));
 		data->philo[i].fork = &data->forks[i];
 		data->philo[i].fork->state = FREE;
+		i++;
+	}
+	return (0);
+}
+
+int	attribute_friends_forks(t_data *data)
+{
+	int	i;
+
+	i = 0;
+	while (i < data->args->nb_philo)
+	{
+		if (i < data->args->nb_philo - 1)
+			data->philo[i].friends_fork = &data->forks[i + 1];
+		else
+			data->philo[i].friends_fork = &data->forks[0];
 		i++;
 	}
 	return (0);
