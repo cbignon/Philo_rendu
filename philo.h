@@ -6,7 +6,7 @@
 /*   By: cbignon <cbignon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 15:27:03 by cbignon           #+#    #+#             */
-/*   Updated: 2022/01/13 15:57:24 by cbignon          ###   ########.fr       */
+/*   Updated: 2022/01/18 12:07:54 by cbignon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,14 +97,12 @@ void	*god_ft(void *data);
 void	*philo_ft(void *philo);
 
 int		drop_forks(t_philo *philo);
-int		drop_my_fork(t_philo *philo);
 int		change_fork_state(t_mut *fork, int before, int after);
 
 int		philo_take_forks(t_philo *philo);
 int		philo_eat(t_philo *philo);
 int		philo_sleep(t_philo *philo);
 int		philo_think(t_philo *philo);
-int		count_meal(t_philo *philo);
 
 int		check_philosophers(t_data *data);
 int		check_death(t_philo *philo, t_data *data, int n);

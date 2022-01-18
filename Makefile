@@ -6,16 +6,16 @@
 #    By: cbignon <cbignon@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/01 11:19:39 by cbignon           #+#    #+#              #
-#    Updated: 2022/01/13 16:02:19 by cbignon          ###   ########.fr        #
+#    Updated: 2022/01/18 11:42:11 by cbignon          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philo
 
-SRC =	clean.c \
+SRC =	main.c \
+		clean.c \
 		god_ft.c \
 		init.c \
-		main.c \
 		philo_actions.c \
 		thread.c \
 		print.c \

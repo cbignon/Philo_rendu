@@ -6,7 +6,7 @@
 /*   By: cbignon <cbignon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/22 11:57:42 by cbignon           #+#    #+#             */
-/*   Updated: 2022/01/13 15:43:29 by cbignon          ###   ########.fr       */
+/*   Updated: 2022/01/18 12:44:30 by cbignon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	*philo_ft(void *philo)
 	if (ph->args->nb_philo == 1)
 	{
 		print_status(ph, "has taken a fork");
-		ft_usleep(ph->args->t_to_die + 1);
+		ft_usleep(ph->args->t_to_die);
 		print_death(ph);
 		return (NULL);
 	}
@@ -62,18 +62,18 @@ int	create_thread(t_data *data)
 	pthread_create(&god, NULL, god_ft, (void *)data);
 	while (++i < data->args->nb_philo)
 	{
-		if ((i + 1) % 2)
+		// if ((i + 1) % 2)
 			pthread_create(&data->philo[i].tid, NULL, philo_ft,
 				(void *)&data->philo[i]);
 	}
-	ft_usleep(data->args->t_to_eat);
-	i = -1;
-	while (++i < data->args->nb_philo)
-	{
-		if ((i + 1) % 2 == 0)
-			pthread_create(&data->philo[i].tid, NULL, philo_ft,
-				(void *)&data->philo[i]);
-	}
+	// ft_usleep(data->args->t_to_eat);
+	// i = -1;
+	// while (++i < data->args->nb_philo)
+	// {
+	// 	if ((i + 1) % 2 == 0)
+	// 		pthread_create(&data->philo[i].tid, NULL, philo_ft,
+	// 			(void *)&data->philo[i]);
+	// }
 	pthread_join(god, NULL);
 	i = -1;
 	while (++i < data->args->nb_philo)
